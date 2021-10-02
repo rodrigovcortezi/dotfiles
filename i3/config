@@ -195,7 +195,7 @@ bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
 
 # display wallpaper
-exec_always --no-startup-id feh --bg-fill /home/rodrigo/Images/bg/aesthetic-sunset-wp.png
+exec_always --no-startup-id feh --bg-fill /home/rodrigo/Images/bg/cosmic.jpg
 
 exec_always --no-startup-id picom
 

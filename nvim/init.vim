@@ -21,10 +21,13 @@ set signcolumn=yes
 set colorcolumn=80
 set ignorecase
 set smartcase
+set background=dark
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'morhetz/gruvbox'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'JoosepAlviste/nvim-ts-context-commentstring'
+Plug 'sainnhe/gruvbox-material'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'jiangmiao/auto-pairs'
@@ -33,7 +36,6 @@ Plug 'mattn/emmet-vim'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-eunuch'
 Plug 'ThePrimeagen/harpoon'
-Plug 'suy/vim-context-commentstring'
 
 call plug#end()
 
@@ -47,10 +49,30 @@ let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.vue'
 let g:closetag_xhtml_filetypes = 'xhtml,jsx,vue'
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-
 " Gruvbox plugin config "
-let g:gruvbox_contrast_dark = "hard"
-colorscheme gruvbox
+let g:gruvbox_material_palette = 'mix'
+let g:gruvbox_material_background = 'hard'
+colorscheme gruvbox-material
+
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  indent = {
+    enable = true
+  },
+  highlight = {
+    enable = true
+  },
+  incremental_selection = {
+    enable = true
+  },
+  textobjects = {
+    enable = true
+  },
+  context_commentstring = {
+    enable = true
+  }
+}
+EOF
 
 " Emment plugin config "
 let g:user_emmet_install_global = 0
