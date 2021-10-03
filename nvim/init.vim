@@ -30,7 +30,7 @@ Plug 'JoosepAlviste/nvim-ts-context-commentstring'
 Plug 'sainnhe/gruvbox-material'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
-Plug 'jiangmiao/auto-pairs'
+Plug 'windwp/nvim-autopairs'
 Plug 'alvan/vim-closetag'
 Plug 'mattn/emmet-vim'
 Plug 'tpope/vim-commentary'
@@ -41,8 +41,8 @@ call plug#end()
 
 " vue
 
-" can't see any differences:
-" autocmd BufRead,BufNewFile *.vue setfiletype html
+" force tree sitter indent to work in vue files (possible solution):
+" autocmd BufRead,BufNewFile   *.vue set indentexpr=nvim_treesitter#indent()
 " enable closetag in vue files
 let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.vue'
 " make vue files close xhtml tags
@@ -70,6 +70,10 @@ require'nvim-treesitter.configs'.setup {
   },
   context_commentstring = {
     enable = true
+  },
+  ensure_installed = {
+    'javascript', 'json', 'python', 'html',
+    'lua', 'vue', 'yaml', 'css', 'scss', 'c', 'bash'
   }
 }
 EOF
