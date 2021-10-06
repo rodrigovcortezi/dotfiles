@@ -1,3 +1,4 @@
+set nocompatible
 set exrc
 set guicursor=
 set relativenumber
@@ -23,10 +24,14 @@ set ignorecase
 set smartcase
 set background=dark
 
+let g:polyglot_disabled = ['sensible', 'ftdetect']
+let g:vue_pre_processors = []
+
 call plug#begin('~/.vim/plugged')
 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'JoosepAlviste/nvim-ts-context-commentstring'
+Plug 'sheerun/vim-polyglot'
 Plug 'sainnhe/gruvbox-material'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
@@ -41,8 +46,6 @@ call plug#end()
 
 " vue
 
-" force tree sitter indent to work in vue files (possible solution):
-" autocmd BufRead,BufNewFile   *.vue set indentexpr=nvim_treesitter#indent()
 " enable closetag in vue files
 let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.vue'
 " make vue files close xhtml tags
@@ -57,10 +60,11 @@ colorscheme gruvbox-material
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
   indent = {
-    enable = true
+    enable = false
   },
   highlight = {
-    enable = true
+    enable = true,
+    additional_vim_regex_highlighting = true
   },
   incremental_selection = {
     enable = true
